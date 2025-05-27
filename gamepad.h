@@ -163,6 +163,7 @@ bool gp_set_vibration(gp_context* ctx, int index, float left_motor, float right_
 #include <unistd.h>
 #include <dirent.h>
 #include <linux/input.h>
+#include <linux/input-event-codes.h>
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -237,11 +238,9 @@ static float apply_deadzone(float value, float deadzone) {
     return value;
 }
 
-
-#define BTN_LOOKUP_TABLE_SIZE 0x2FF + 1
+#define BTN_LOOKUP_TABLE_SIZE (KEY_MAX + 1)
 
 static const uint8_t btn_lookup[BTN_LOOKUP_TABLE_SIZE] = {
-    //Zero is reserved for invalid buttons
     [BTN_SOUTH]  = 1,
     [BTN_EAST]   = 2,
     [BTN_NORTH]  = 3,
